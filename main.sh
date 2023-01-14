@@ -10,6 +10,8 @@ if [ -n "$GITHUB_WORKSPACE" ]
             echo "Lua valid, renaming $file.tmp -> $file"
             if not set -q DRY_RUN then
                 mv "$file.tmp" "$file"
+            else
+                echo "DRY RUN, file not changed"
             end
         else
             echo "FILE IS NOT LUA"
