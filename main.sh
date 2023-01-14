@@ -6,11 +6,12 @@ if [ -n "$GITHUB_WORKSPACE" ]
     for file in (find ./ -name "*.lua")
         echo "$file"
         luamin -f "$file" > "$file".tmp
-        if [ -n "(cat '$file.tmp')" ]
+        if cat "$file.tmp" | grep "Error: failed to minify. Make sure the Lua code is valid" >/dev/null
+            echo "$file had .lua but was infact not lua"
+            rm "$file.tmp"
+        else
             echo "Lua valid, renaming $file.tmp -> $file"
             mv "$file.tmp" "$file"
-        else
-            rm "$file.tmp"
         end
     end
 else
