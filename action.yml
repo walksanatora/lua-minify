@@ -1,9 +1,12 @@
 name: "Run Craftos"
 description: "Runs a CraftOS computer as a Headless CI"
+inputs:
+  find:
+    description: "args for 'find', every file found gets passed"
+    required: false
+    default: "./ -name '*.lua' "
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{inputs.root}}
-    - ${{inputs.timeout}}
-    - ${{inputs.args}}
