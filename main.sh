@@ -3,7 +3,7 @@ echo "Minifying lua"
 if [ -n "$GITHUB_WORKSPACE" ]
     cd "$GITHUB_WORKSPACE"
     pwd
-    for file in (find $1)
+    for file in (find $argv)
         echo "$file"
         luamin -f "$file" > "$file".tmp
         if cat "$file.tmp" | grep "Error: failed to minify. Make sure the Lua code is valid" >/dev/null
