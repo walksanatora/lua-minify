@@ -1,0 +1,9 @@
+name: "Run Craftos"
+description: "Runs a CraftOS computer as a Headless CI"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{inputs.root}}
+    - ${{inputs.timeout}}
+    - ${{inputs.args}}
